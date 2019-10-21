@@ -17,52 +17,61 @@ public class RETC_020_AddNewTagPOM {
 	@FindBy(xpath="//div[text()='Posts']")
 	private WebElement PostsLink; 
 	
-	@FindBy(xpath="(//a[text()='Tags'])[1]")
-	private WebElement TagsLink; 
-	
-	@FindBy(id="tag-name")
-	private WebElement NameTextBox;
-	
-	@FindBy(id="tag-slug")
-	private WebElement SlugTextBox;
-	
-	@FindBy(id="tag-description")
-	private WebElement DescTextBox;
-	
-	@FindBy(id="submit")
-	private WebElement AddTagButn;
-	
-	@FindBy(xpath="//table[@class='wp-list-table widefat fixed striped tags']")
-	private WebElement VerifyTag;
-	
 	public void ClickPostsLink() {
 		this.PostsLink.click();
 	}
+	
+	@FindBy(xpath="(//a[text()='Tags'])[1]")
+	private WebElement TagsLink; 
 	
 	public void ClickTagsLink() {
 		this.TagsLink.click();
 	}
 	
+	@FindBy(id="tag-name")
+	private WebElement NameTextBox;
+	
 	public void SendNameText() {
-		this.NameTextBox.sendKeys("New Launches");
+		this.NameTextBox.sendKeys("yyyy");
 	}
+	
+	@FindBy(id="tag-slug")
+	private WebElement SlugTextBox;
 	
 	public void SendSlugText() {
 		this.SlugTextBox.sendKeys("launch");
 	}
 	
+	@FindBy(id="tag-description")
+	private WebElement DescTextBox;
+	
 	public void SendDescriptionText() {
 		this.DescTextBox.sendKeys("New Launches of vilas, apartments, flats");
 	}
+	
+	@FindBy(id="submit")
+	private WebElement AddTagButn;
 	
 	public void ClickAddTagButton() {
 		this.AddTagButn.click();
 	}
 	
+	@FindBy(id="tag-search-input")
+	private WebElement SearchTextBox;
+	
+	@FindBy(id="search-submit")
+	private WebElement SearchTagButton;
+	
+	@FindBy(xpath="//tbody[@id='the-list'][1]//a[@class='row-title']")
+	private WebElement Taglist;
+	
 	public void AssertTagVerification() {
-		String actualTag= this.VerifyTag.getText();
-		this.VerifyTag.isDisplayed();
-		String expectedTag=("New Launches");
+		String expectedTag=this.NameTextBox.getAttribute("value");
+		this.SearchTextBox.sendKeys(expectedTag);
+		this.SearchTagButton.click();
+		String actualTag = this.Taglist.getText();
+		System.out.println("Expected Tag: "+expectedTag);
+		System.out.println("Actual Tag: "+actualTag);
 		Assert.assertEquals(actualTag,expectedTag);
 	}
 }

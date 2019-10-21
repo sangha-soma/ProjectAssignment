@@ -1,5 +1,6 @@
 package com.training.regression.tests;
 
+import java.awt.AWTException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -49,10 +50,11 @@ public class RETC_079_AddFeatureExcelTest {
 	 * properties.getProperty("adminURL"); screenShot = new ScreenShot(driver); //
 	 * open the browser driver.get(adminUrl); }
 	 */
-	/*
-	 * @AfterMethod public void tearDown() throws Exception { driver.quit(); }
-	 */
 	
+	  @AfterMethod public void tearDown() throws Exception { 
+		  driver.quit(); 
+		  }
+	 	
 	@Test(priority=0)
 	  public void adminLogin() {
 		  	loginPOM.ClickLogInLink();
@@ -66,15 +68,17 @@ public class RETC_079_AddFeatureExcelTest {
 	  }
 	
 	@Test(dataProvider = "excel-inputs", dataProviderClass = LoginDataProviders.class,priority=1)
-	public void loginDBTest(String Name, String Slug, String ParentFeature, String Description) throws InterruptedException {
+	public void loginDBTest(String Name, String Slug, String ParentFeature, String Description) throws InterruptedException, AWTException {
 		AddNewFeatureTest.SendNameText(Name);
 		AddNewFeatureTest.SendSlugText(Slug);
 		AddNewFeatureTest.SelectParentFeature(ParentFeature);
 		AddNewFeatureTest.SendDescriptionText(Description);
 		AddNewFeatureTest.ClickAddFeatureButton();
+		Thread.sleep(2000);
 		AddNewFeatureTest.AddedFeatureSearch(Name);
+		Thread.sleep(3000);
+		AddNewFeatureTest.AssertPropertyVerification();
 		screenShot.captureScreenShot(Name);
-
 	}
 
 }

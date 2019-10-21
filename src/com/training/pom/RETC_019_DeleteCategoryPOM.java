@@ -18,49 +18,47 @@ private WebDriver driver;
 	@FindBy(xpath="//div[text()='Posts']")
 	private WebElement PostsLink; 
 	
-	@FindBy(xpath="(//a[text()='Categories'])[1]")
-	private WebElement CategoryLink;
-
-	@FindBy(id="cb-select-820")
-	//@FindBy(xpath="//input[@name='delete_tags[]']/../..")
-	private WebElement SelectCategory;
-
-	@FindBy(id="bulk-action-selector-top")
-	private WebElement BulkActionsList;
-	
-	@FindBy(id="doaction")
-	private WebElement ApplyButton;
-	
-	@FindBy(id="message")
-	private WebElement GetDelMsg;
-	
 	public void ClickPostsLink() {
 		this.PostsLink.click();
 	}
 	
+	@FindBy(xpath="(//a[text()='Categories'])[1]")
+	private WebElement CategoryLink;
+	
 	public void ClickCategoryLink() {
 		this.CategoryLink.click();
 	}
+
+	@FindBy(xpath="//input[@name='delete_tags[]'][1]")
+	private WebElement SelectCategory;
 	
 	public void SelectCategoryDelete() {
 		this.SelectCategory.click();
 	}
+
+	@FindBy(id="bulk-action-selector-top")
+	private WebElement BulkActionsList;
 	
 	public void ClickBulkActionsDrop() {
 		this.BulkActionsList.click();
 		Select sel= new Select(this.BulkActionsList);
 		sel.selectByValue("delete");
 	}
+		
+	@FindBy(id="doaction")
+	private WebElement ApplyButton;
 	
 	public void ClickApplyButton() {
 		this.ApplyButton.click();
 	}
-
+	
+	@FindBy(id="message")
+	private WebElement GetDelMsg;
+	
 	public void GetDelConfMsg() {
 		String actualmsg= GetDelMsg.getText();
 		System.out.println(actualmsg);
 		String expectedmsg=("Categories deleted.");
 		Assert.assertTrue(actualmsg.contains(expectedmsg));
-		//Assert.assertEquals(actualmsg,expectedmsg);
 	}
 }

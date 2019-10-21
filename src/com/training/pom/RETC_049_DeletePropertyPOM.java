@@ -18,17 +18,45 @@ private WebDriver driver;
 	@FindBy(xpath="//div[text()='Properties']")
 	private WebElement PropertiesLink; 
 	
+	public void ClickPropertiesLink() {
+		this.PropertiesLink.click();
+	}
+	
 	@FindBy(xpath="(//a[text()='All Properties'])[1]")
 	private WebElement AllPropertiesLink;
 
-	@FindBy(xpath="(//a[text()='PRESTIGE'])[1]")
+	public void ClickAllPropertiesLink() {
+		this.AllPropertiesLink.click();
+	}
+	
+	@FindBy(id="post-search-input")
+	private WebElement SearchTextBox;
+	
+	@FindBy(id="search-submit")
+	private WebElement SearchTagButton;
+
+	@FindBy(xpath="(//a[@class='row-title'])[1]")
 	private WebElement MouseOpProperty;
 
 	@FindBy(xpath="(//a[text()='Trash'])[1]")
 	private WebElement IndvPropertyTrash;
 	
+	public void MouseOverPropertyLink() throws InterruptedException {
+		this.SearchTextBox.sendKeys("Prestige");
+		this.SearchTagButton.click();
+		WebElement propertyTitle=this.MouseOpProperty;
+		Actions act= new Actions(driver);
+	    act.moveToElement(propertyTitle).build().perform();
+	    Thread.sleep(3000);
+	    this.IndvPropertyTrash.click();
+	    }
+	
 	@FindBy(xpath="(//a[text()='Trash '])")
 	private WebElement PropertyTrashTab;
+	
+	public void ClickTrashTab() {
+		this.PropertyTrashTab.click();
+	}
 	
 	@FindBy(xpath="//tbody[@id='the-list']/tr[1]/td[1]")
 	private WebElement MouseOpTrashProperty;
@@ -37,29 +65,6 @@ private WebDriver driver;
 	//@FindBy(xpath="(//div//span//a[text()='Delete Permanently'])[1]")
 	private WebElement DeletePermanentlyLink;
 	
-	@FindBy(xpath="//div[@id='message']")
-	private WebElement VerifyDeleteConf;
-	
-	public void ClickPropertiesLink() {
-		this.PropertiesLink.click();
-	}
-	
-	public void ClickAllPropertiesLink() {
-		this.AllPropertiesLink.click();
-	}
-	
-	public void MouseOverPropertyLink() throws InterruptedException {
-		WebElement propertyTitle=this.MouseOpProperty;
-		Actions act= new Actions(driver);
-	    act.moveToElement(propertyTitle).build().perform();
-	    Thread.sleep(3000);
-	    this.IndvPropertyTrash.click();
-	    }
-	
-	public void ClickTrashTab() {
-		this.PropertyTrashTab.click();
-	}
-	
 	public void MouseOverTrashPropertyLink() throws InterruptedException {
 		WebElement TrashpropertyTitle=this.MouseOpTrashProperty;
 		Actions act= new Actions(driver);
@@ -67,7 +72,10 @@ private WebDriver driver;
 	    Thread.sleep(3000);
 	    this.DeletePermanentlyLink.click();
 	    }
-	
+		
+	@FindBy(xpath="//div[@id='message']")
+	private WebElement VerifyDeleteConf;
+		
 	public void AssertDelPropertyVerification() {
 		System.out.println(this.VerifyDeleteConf.getText());
 		String actualTag= this.VerifyDeleteConf.getText();

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -38,6 +39,13 @@ public class RETC_079_081_AddFeatures {
 		Thread.sleep(3000);
 		screenShot = new ScreenShot(driver);
 	}
+	
+	@AfterClass
+	public void tearDown() throws Exception {
+		Thread.sleep(1000);
+		driver.quit();
+	}
+	
   @Test(priority=0)
   public void adminLogin() {
 	  	loginPOM.ClickLogInLink();
@@ -51,11 +59,14 @@ public class RETC_079_081_AddFeatures {
 	public void addFeatureTest() throws InterruptedException {
 	  	AddMultipleNewFeatureTest.ClickPropertiesLink();
 	  	AddMultipleNewFeatureTest.ClickFeaturesLink();
-	  	AddMultipleNewFeatureTest.SendNameText();
-	  	AddMultipleNewFeatureTest.SendSlugText();
-	  	AddMultipleNewFeatureTest.SelectParentFeature();
-	  	AddMultipleNewFeatureTest.SendDescriptionText();
+	  	AddMultipleNewFeatureTest.SendNameText("New Launches171");
+	  	AddMultipleNewFeatureTest.SendSlugText("launch171");
+	  	AddMultipleNewFeatureTest.SelectParentFeature("Exiting Offer");
+	  	AddMultipleNewFeatureTest.SendDescriptionText("New Launches of vilas, apartments, flats");
 	  	AddMultipleNewFeatureTest.ClickAddFeatureButton();
 	  	driver.navigate().refresh();
-		}
+	  	AddMultipleNewFeatureTest.AddedFeatureSearch("New Launches171");
+	  	AddMultipleNewFeatureTest.AssertPropertyVerification();
+	  	screenShot.captureScreenShot("Tenth");
+	  	}
 }

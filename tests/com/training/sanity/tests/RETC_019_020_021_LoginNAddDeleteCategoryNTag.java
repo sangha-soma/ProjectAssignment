@@ -86,18 +86,20 @@ public class RETC_019_020_021_LoginNAddDeleteCategoryNTag {
 		AddNewTagtest.SendSlugText();
 		AddNewTagtest.SendDescriptionText();
 		AddNewTagtest.ClickAddTagButton();
+		AddNewTagtest.AssertTagVerification();
 		screenShot.captureScreenShot("Third");
-	  }
+		}
 	
 	@Test(priority=3)
 	public void TagDeletion() throws InterruptedException {
 		DeleteTagtest = new RETC_021_DeleteTagPOM(driver);
-		DeleteTagtest.ClickPostsLink();
-		DeleteTagtest.ClickTagsLink();
+	  //DeleteTagtest.ClickPostsLink();
+	  //DeleteTagtest.ClickTagsLink();
 		DeleteTagtest.SelectTagDelete();
 		DeleteTagtest.ClickBulkActionsDrop();
+		Thread.sleep(3000);
 		DeleteTagtest.ClickApplyButton();
 		DeleteTagtest.GetDelConfMsg();
 		screenShot.captureScreenShot("Fourth");
-		  }
+		}
 }

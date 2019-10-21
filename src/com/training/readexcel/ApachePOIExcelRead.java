@@ -19,7 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *      access.
  */
 public class ApachePOIExcelRead {
-	public  String [][] getExcelContent(String fileName, int sheetno) {
+		public  String [][] getExcelContent(String fileName) {
 		int rowCount =0; 
         String [][] list1 = null; 
         
@@ -33,6 +33,7 @@ public class ApachePOIExcelRead {
             System.out.println(sheet);
             
             int rowTotal = sheet.getLastRowNum();
+            System.out.println("Row Count: "+rowTotal);
             if ((rowTotal > 0) || (sheet.getPhysicalNumberOfRows() > 0)) {
                 rowTotal++;
             }

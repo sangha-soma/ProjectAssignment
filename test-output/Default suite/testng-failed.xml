@@ -5,7 +5,7 @@
     <classes>
       <class name="com.training.regression.tests.RETC_079_AddFeatureExcelTest">
         <methods>
-          <include name="loginDBTest" invocation-numbers="0 1 2"/>
+          <include name="loginDBTest" invocation-numbers="0"/>
           <include name="setUpBeforeClass"/>
         </methods>
       </class> <!-- com.training.regression.tests.RETC_079_AddFeatureExcelTest -->

@@ -1,10 +1,13 @@
 package com.training.pom;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 public class RETC_081_AddMultipleNewFeaturePOM {
 private WebDriver driver; 
@@ -17,71 +20,79 @@ private WebDriver driver;
 	@FindBy(xpath="//div[text()='Properties']")
 	private WebElement PropertiesLink; 
 	
-	@FindBy(xpath="//a[text()='Features']")
-	private WebElement FeaturesLink;
-	
-	@FindBy(id="tag-name")
-	private WebElement NameTextBox;
-	
-	@FindBy(id="tag-slug")
-	private WebElement SlugTextBox;
-	
-	@FindBy(id="parent")
-	private WebElement ParentFeatureDropDown;
-	
-	@FindBy(id="tag-description")
-	private WebElement DescTextBox;
-	
-	@FindBy(id="submit")
-	private WebElement AddNewFeatureButn;
-	
-	@FindBy(id="tag-search-input")
-	private WebElement FeatureSearchText;
-	
-	@FindBy(id="search-submit")
-	private WebElement FeatureSearchBtn;
-	
-	@FindBy(xpath="//table[@class='wp-list-table widefat fixed striped tags']")
-	private WebElement VerifyFeature;
-	
 	public void ClickPropertiesLink() {
 		this.PropertiesLink.click();
 	}
+	
+	@FindBy(xpath="//a[text()='Features']")
+	private WebElement FeaturesLink;
 	
 	public void ClickFeaturesLink() {
 		this.FeaturesLink.click();
 	}
 	
-	public void SendNameText() {
-		this.NameTextBox.sendKeys("New Launches");
+	@FindBy(id="tag-name")
+	private WebElement NameTextBox;
+	
+	public void SendNameText(String Name) {
+		this.NameTextBox.clear();
+		this.NameTextBox.sendKeys(Name);
 	}
 	
-	public void SendSlugText() {
-		this.SlugTextBox.sendKeys("launch");
+	@FindBy(id="tag-slug")
+	private WebElement SlugTextBox;
+	
+	public void SendSlugText(String Slug) {
+		this.SlugTextBox.clear();
+		this.SlugTextBox.sendKeys(Slug);
 	}
 	
-	public void SelectParentFeature() {
+	@FindBy(id="parent")
+	private WebElement ParentFeatureDropDown;
+	
+	public void SelectParentFeature(String Parent_Feature) {
 		WebElement ParentFeaturelist= this.ParentFeatureDropDown;
 		Select ParentFeatureValue=new Select(ParentFeaturelist);
-		ParentFeatureValue.selectByVisibleText("Exiting Offer");
+		ParentFeatureValue.selectByVisibleText(Parent_Feature);
 	}
 	
-	public void SendDescriptionText() {
-		this.DescTextBox.sendKeys("New Launches of vilas, apartments, flats");
+	@FindBy(id="tag-description")
+	private WebElement DescTextBox;
+	
+	public void SendDescriptionText(String Description) {
+		this.DescTextBox.clear();
+		this.DescTextBox.sendKeys(Description);
 		}
 	
+	@FindBy(id="submit")
+	private WebElement AddNewFeatureButn;
+	
+
 	public void ClickAddFeatureButton() {
-		this.AddNewFeatureButn.click();
+	this.AddNewFeatureButn.click();
 	}
 	
-	/*
-	 * public void AddedFeatureSearch(String Name) {
-	 * this.FeatureSearchText.sendKeys(Name); this.FeatureSearchBtn.click(); }
-	 */
+	@FindBy(id="tag-search-input")
+	private WebElement FeatureSearchText;
 	
-	/*
-	 * public void AssertFeatureVerification() { String actualFeature=
-	 * this.VerifyFeature.getText(); String expectedFeature=;
-	 * Assert.assertEquals(actualFeature,expectedFeature); }
-	 */
+	public void AddedFeatureSearch(String Name) {
+		  this.FeatureSearchText.clear();
+		  this.FeatureSearchText.sendKeys(Name); 
+		  this.FeatureSearchBtn.click(); 
+	}
+	
+	@FindBy(id="search-submit")
+	private WebElement FeatureSearchBtn;
+	
+	@FindBy(xpath="//tbody[@id='the-list'][1]//a[@class='row-title']")
+	private WebElement FeatureList;
+	
+	public void AssertPropertyVerification() {
+		String expectedFeature=this.FeatureSearchText.getAttribute("value");
+		String actualFeature = this.FeatureList.getText();
+		System.out.println("Expected Feature: "+expectedFeature);
+		System.out.println("Actual Feature: "+actualFeature);
+		Assert.assertEquals(actualFeature,expectedFeature);
+	}
+	
 }

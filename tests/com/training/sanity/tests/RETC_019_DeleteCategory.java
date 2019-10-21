@@ -10,6 +10,7 @@ public class RETC_019_DeleteCategory extends LoginTests{
 	private RETC_019_DeleteCategoryPOM DeleteCategorytest;
 	private ScreenShot screenShot;
 	
+	
 	@AfterClass
 	public void tearDown() throws Exception {
 		Thread.sleep(1000);
@@ -18,6 +19,7 @@ public class RETC_019_DeleteCategory extends LoginTests{
 	
   @Test(priority=1)
   public void SelectDeleteCategory() throws InterruptedException {
+	  screenShot = new ScreenShot(driver);
 	  DeleteCategorytest = new RETC_019_DeleteCategoryPOM(driver);
 	  DeleteCategorytest.ClickPostsLink();
 	  DeleteCategorytest.ClickCategoryLink();
@@ -26,6 +28,7 @@ public class RETC_019_DeleteCategory extends LoginTests{
 	  DeleteCategorytest.ClickBulkActionsDrop();
 	  Thread.sleep(3000);
 	  DeleteCategorytest.ClickApplyButton();
+	  Thread.sleep(3000);
 	  DeleteCategorytest.GetDelConfMsg();
 	  screenShot.captureScreenShot("Second");
 	  }

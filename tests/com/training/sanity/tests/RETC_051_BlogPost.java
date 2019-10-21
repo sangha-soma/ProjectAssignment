@@ -35,7 +35,6 @@ public class RETC_051_BlogPost {
 		loginPOM = new LoginPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		adminUrl = properties.getProperty("adminURL");
-		// open the browser 
 		driver.get(baseUrl);
 		driver.manage().window().maximize();
 		Thread.sleep(3000);
@@ -65,7 +64,8 @@ public class RETC_051_BlogPost {
 		BlogPostTest.SendReplyCommentText();
 		BlogPostTest.ClickReplyButton();
 		driver.navigate().refresh();
-		driver.quit();
+		BlogPostTest.AssertReplyVerification();
+		
 	}
   
 }
