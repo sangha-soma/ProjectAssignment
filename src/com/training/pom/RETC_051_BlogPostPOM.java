@@ -98,8 +98,8 @@ private WebDriver driver;
 	@FindBy(id="replycontent")
 	private WebElement SubmitReplyToComment;
 	
-	public void SendReplyCommentText() {
-		this.SubmitReplyToComment.sendKeys("Thank You!");
+	public void SendReplyCommentText(String Comment) {
+		this.SubmitReplyToComment.sendKeys(Comment);
 		//String expectedCommentReply = this.SubmitReplyToComment.getAttribute("value");
 		//System.out.println("Expected Comment: "+expectedCommentReply);
 		}

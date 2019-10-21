@@ -41,10 +41,12 @@ public class RETC_049_050_LoginNDeleteRestoreProperty {
 		driver.get(baseUrl);
 	}
 
-	/*
-	 * @AfterTest public void tearDown() throws Exception { Thread.sleep(1000);
-	 * driver.quit(); }
-	 */
+	
+	  @AfterTest public void tearDown() throws Exception { 
+		  Thread.sleep(1000);
+		  driver.quit(); 
+	  }
+	 
 	@Test(priority=0)
 	public void validLoginTest() {
 		loginPOM.ClickLogInLink();

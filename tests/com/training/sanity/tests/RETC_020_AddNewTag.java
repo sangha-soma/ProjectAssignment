@@ -23,9 +23,9 @@ public class RETC_020_AddNewTag extends LoginTests {
 		AddNewTagtest = new RETC_020_AddNewTagPOM(driver);
 		AddNewTagtest.ClickPostsLink();
 		AddNewTagtest.ClickTagsLink();
-		AddNewTagtest.SendNameText();
-		AddNewTagtest.SendSlugText();
-		AddNewTagtest.SendDescriptionText();
+		AddNewTagtest.SendNameText("yyyy");
+		AddNewTagtest.SendSlugText("launch");
+		AddNewTagtest.SendDescriptionText("New Launches of vilas, apartments, flats");
 		AddNewTagtest.ClickAddTagButton();
 		AddNewTagtest.AssertTagVerification();
 		screenShot.captureScreenShot("Third");

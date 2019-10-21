@@ -82,9 +82,9 @@ public class RETC_019_020_021_LoginNAddDeleteCategoryNTag {
 		AddNewTagtest = new RETC_020_AddNewTagPOM(driver);
 		AddNewTagtest.ClickPostsLink();
 		AddNewTagtest.ClickTagsLink();
-		AddNewTagtest.SendNameText();
-		AddNewTagtest.SendSlugText();
-		AddNewTagtest.SendDescriptionText();
+		AddNewTagtest.SendNameText("yyyy");
+		AddNewTagtest.SendSlugText("launch");
+		AddNewTagtest.SendDescriptionText("New Launches of vilas, apartments, flats");
 		AddNewTagtest.ClickAddTagButton();
 		AddNewTagtest.AssertTagVerification();
 		screenShot.captureScreenShot("Third");

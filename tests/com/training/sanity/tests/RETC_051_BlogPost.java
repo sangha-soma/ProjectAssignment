@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -40,6 +41,13 @@ public class RETC_051_BlogPost {
 		Thread.sleep(3000);
 		screenShot = new ScreenShot(driver);
 	}
+	
+	@AfterClass
+	public void tearDown() throws Exception {
+		Thread.sleep(1000);
+		driver.quit();
+	}
+	
   @Test(priority=0)
   public void BlogPostReply() throws AWTException, InterruptedException {
 	  BlogPostTest.ClickBlogLink();
@@ -61,7 +69,7 @@ public class RETC_051_BlogPost {
 		screenShot.captureScreenShot("First");
 		BlogPostTest.ClickDashboardLink();
 		BlogPostTest.MouseOverRecentComment();
-		BlogPostTest.SendReplyCommentText();
+		BlogPostTest.SendReplyCommentText("Thank You!");
 		BlogPostTest.ClickReplyButton();
 		driver.navigate().refresh();
 		BlogPostTest.AssertReplyVerification();

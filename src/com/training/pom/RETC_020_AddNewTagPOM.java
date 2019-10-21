@@ -31,22 +31,22 @@ public class RETC_020_AddNewTagPOM {
 	@FindBy(id="tag-name")
 	private WebElement NameTextBox;
 	
-	public void SendNameText() {
-		this.NameTextBox.sendKeys("yyyy");
+	public void SendNameText(String Name) {
+		this.NameTextBox.sendKeys(Name);
 	}
 	
 	@FindBy(id="tag-slug")
 	private WebElement SlugTextBox;
 	
-	public void SendSlugText() {
-		this.SlugTextBox.sendKeys("launch");
+	public void SendSlugText(String Slug) {
+		this.SlugTextBox.sendKeys(Slug);
 	}
 	
 	@FindBy(id="tag-description")
 	private WebElement DescTextBox;
 	
-	public void SendDescriptionText() {
-		this.DescTextBox.sendKeys("New Launches of vilas, apartments, flats");
+	public void SendDescriptionText(String Description) {
+		this.DescTextBox.sendKeys(Description);
 	}
 	
 	@FindBy(id="submit")
